@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+import BriefcaseIcon from '../assets/icons/Briefcase.astro';
+import ProfileIcon from '../assets/icons/Profile.astro';
+import TechStackIcon from '../assets/icons/Code.astro';
+import Hero from '../components/Hero.astro';
+import TitleSection from '../components/TitleSection.astro';
+import Projects from '../components/Projects.astro';
+import AboutMe from '../components/AboutMe.astro';
+import TechStack from '../components/TechStack.astro';
+---
+
+<Layout
+	title="Salem Martínez | Desarrollador Web PHP/Laravel"
+	description="Desarrollador web enfocado en automatización de procesos empresariales con PHP, Laravel, JavaScript y MySQL.">
+	<main class="px-4 pt-28">
+		<SectionContainer id="inicio" class="py-24 md:py-36">
+			<Hero />
+		</SectionContainer>
+		<div class="space-y-18">
+			<SectionContainer id="proyectos">
+				<TitleSection>
+					<BriefcaseIcon class="size-7" />
+					Proyectos
+				</TitleSection>
+				<Projects />
+			</SectionContainer>
+			<SectionContainer id="sobre-mi">
+				<TitleSection>
+					<ProfileIcon class="size-7" />
+					Sobre mí
+				</TitleSection>
+				<AboutMe />
+			</SectionContainer>
+			<SectionContainer id="stack-tecnologico">
+				<TitleSection>
+					<TechStackIcon class="size-7" />
+					Tecnologías
+				</TitleSection>
+				<TechStack />
+			</SectionContainer>
+		</div>
+	</main>
+</Layout>

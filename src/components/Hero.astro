@@ -1,0 +1,42 @@
+---
+import {Image} from 'astro:assets';
+import Logo from '../assets/logo/logo.webp';
+import LinkedInIcon from '../assets/icons/LinkedIn.astro';
+import EmailIcon from '../assets/icons/Email.astro';
+import GitHubIcon from '../assets/icons/GitHub.astro';
+import SocialPill from '../assets/icons/SocialPill.astro';
+
+const profile = 'Salem Martínez | Ingeniero de Sistemas y Desarrollador Web';
+---
+
+<div class="flex items-center gap-x-2 mb-2">
+	<Image src={Logo} class="rounded-full size-20 mb-4" alt={profile} />
+	<h1
+		class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex gap-x-4 pb-4">
+		Salem Martínez
+	</h1>
+</div>
+<h2 class="text-gray-200 text-xl lg:text-2xl text-wrap max-w-175 opacity-80">
+	Desarrollo aplicaciones web para automatización de procesos empresariales
+	utilizando PHP, Laravel, JavaScript y MySQL.
+</h2>
+<nav class="flex gap-4 mt-8 flex-wrap">
+	<SocialPill
+		href="mailto:smartinezhe1@gmail.com"
+		class="bg-rose-500/15 border border-rose-500/20 hover:bg-rose-500/25 hover:border-rose-500/40 hover:shadow-lg hover:shadow-rose-500/20 transition-all duration-300 hover:-translate-y-0.5">
+		<EmailIcon class="size-4 lg:size-6" />
+		Contáctame
+	</SocialPill>
+	<SocialPill
+		href="https://www.linkedin.com/in/salem-martinez-h/"
+		class="bg-[#0A66C2]/15 border border-[#0A66C2]/20 hover:bg-[#0A66C2]/25 hover:border-[#0A66C2]/40 hover:shadow-lg hover:shadow-[#0A66C2]/20 transition-all duration-300 hover:-translate-y-0.5">
+		<LinkedInIcon class="size-4 lg:size-6" />
+		LinkedIn
+	</SocialPill>
+	<SocialPill
+		href="https://github.com/smartinezhe"
+		class="bg-[#6e5494]/15 border border-[#6e5494]/20 hover:bg-[#6e5494]/25 hover:border-[#6e5494]/40 hover:shadow-lg hover:shadow-[#6e5494]/20 transition-all duration-300 hover:-translate-y-0.5">
+		<GitHubIcon class="size-4 lg:size-6" />
+		GitHub
+	</SocialPill>
+</nav>

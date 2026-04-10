@@ -1,0 +1,22 @@
+---
+const {href, class: className = ''} = Astro.props;
+---
+
+<a
+	target="_blank"
+	href={href}
+	role="link"
+	class={`inline-flex items-center justify-center gap-2 px-3 py-2
+    text-white border border-emerald-500/20 rounded-xl max-w-fit
+    bg-emerald-500/15
+    transition-all duration-300
+    hover:bg-emerald-500/25
+    hover:border-emerald-500/40
+    hover:shadow-lg hover:shadow-emerald-500/20
+    hover:-translate-y-0.5
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111827]
+    active:scale-95
+    ${className}
+  `}>
+	<slot />
+</a>

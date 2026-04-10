@@ -1,0 +1,28 @@
+---
+import HTML5 from '../assets/icons/Html5.astro';
+import CSS3 from '../assets/icons/Css3.astro';
+import JavaScript from '../assets/icons/Javascript.astro';
+import Tailwind from '../assets/icons/Tailwind.astro';
+import PHP from '../assets/icons/Php.astro';
+import MySQL from '../assets/icons/Mysql.astro';
+import Laravel from '../assets/icons/Laravel.astro';
+import TechIcon from './TechIcon.astro';
+
+const techs = [
+	{name: 'HTML5', icon: HTML5, color: '#FB490B'},
+	{name: 'CSS3', icon: CSS3, color: '#663399'},
+	{name: 'JavaScript', icon: JavaScript, color: '#F0DB4F'},
+	{name: 'Tailwind', icon: Tailwind, color: '#38BDF8'},
+	{name: 'PHP', icon: PHP, color: '#1E88E5'},
+	{name: 'MySQL', icon: MySQL, color: '#00618A'},
+	{name: 'Laravel', icon: Laravel, color: '#FF2D20'},
+];
+---
+
+<div class="flex flex-wrap justify-center gap-6">
+	{
+		techs.map((tech) => (
+			<TechIcon icon={tech.icon} name={tech.name} color={tech.color} />
+		))
+	}
+</div>
