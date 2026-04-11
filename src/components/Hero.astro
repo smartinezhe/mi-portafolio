@@ -1,6 +1,5 @@
 ---
-import {Image} from 'astro:assets';
-import Logo from '../assets/logo/logo.webp';
+import Logo from '../assets/logo/Logo.astro';
 import LinkedInIcon from '../assets/icons/LinkedIn.astro';
 import EmailIcon from '../assets/icons/Email.astro';
 import GitHubIcon from '../assets/icons/GitHub.astro';
@@ -10,7 +9,7 @@ const profile = 'Salem Martínez | Ingeniero de Sistemas y Desarrollador Web';
 ---
 
 <div class="flex items-center gap-x-2 mb-2">
-	<Image src={Logo} class="rounded-full size-20 mb-4" alt={profile} />
+	<Logo class="size-20 mb-4" aria-label={profile} role="img" />
 	<h1
 		class="text-white text-3xl md:text-4xl lg:text-5xl font-bold flex gap-x-4 pb-4">
 		Salem Martínez
