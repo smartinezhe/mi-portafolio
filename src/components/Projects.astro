@@ -39,44 +39,45 @@ const PROJECTS = [
 ];
 ---
 
-<div class="flex flex-col gap-y-16">
+<div class="flex flex-col gap-16">
 	{
 		PROJECTS.map(({title, description, image, tags, github}) => (
-			<article class="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8 rounded-2xl bg-white/3 border border-white/20 p-6">
+			<article class="flex flex-col md:flex-row gap-8 rounded-2xl border border-white/20 bg-white/3 p-6">
 				<div class="w-full md:w-1/2">
-					<div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 overflow-visible rounded-xl sm:rounded-xl lg:border lg:border-gray-800">
-						<Image
-							src={image}
-							alt={`Sistema de Gestión de Incapacidades Laborales ${image}`}
-							class="w-full h-56 sm:h-full object-cover rounded-xl"
-						/>
-					</div>
+					<Image
+						src={image}
+						alt={title}
+						class="aspect-video w-full rounded-xl object-cover"
+					/>
 				</div>
-				<div class="w-full md:w-1/2 md:max-w-lg">
-					<h3 class="text-white text-2xl font-semibold mb-2">{title}</h3>
-					<div class="flex flex-wrap mt-2">
-						<ul class="flex flex-row gap-x-2 mb-3">
+
+				<div class="flex flex-col gap-6 w-full md:w-1/2 md:max-w-lg">
+					<div class="space-y-4">
+						<h3 class="text-2xl font-semibold text-white">{title}</h3>
+
+						<ul class="flex flex-wrap gap-2">
 							{tags.map((tag) => (
 								<li>
-									<span class="flex gap-x-2 items-center rounded-full text-xs py-1 px-2 bg-gray-950 opacity-80">
+									<span class="flex items-center gap-2 rounded-full bg-gray-950 px-2 py-1 text-xs opacity-80">
 										<tag.icon class="size-4" style={`color: ${tag.color}`} />
+
 										<span class="text-white">{tag.name}</span>
 									</span>
 								</li>
 							))}
 						</ul>
-						<div class="mt-2">
-							<p class="text-gray-200 opacity-80">{description}</p>
-						</div>
-						<footer class="flex items-end justify-start mt-4 gap-x-4">
-							{github && (
-								<LinkButton href={github}>
-									<GitHubIcon class="size-6" />
-									Ver Proyecto
-								</LinkButton>
-							)}
-						</footer>
+
+						<p class="text-gray-200 opacity-80 leading-7">{description}</p>
 					</div>
+
+					<footer>
+						{github && (
+							<LinkButton href={github}>
+								<GitHubIcon class="size-6" />
+								Ver Proyecto
+							</LinkButton>
+						)}
+					</footer>
 				</div>
 			</article>
 		))

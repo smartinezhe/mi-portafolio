@@ -3,20 +3,23 @@ const {href, class: className = ''} = Astro.props;
 ---
 
 <a
-	class={`bg-mauve-600 border border-mauve-700 hover:bg-mauve-700 text-white rounded-xl max-w-fit
-    shadow-sm shadow-black/30
-    inline-flex items-center justify-center gap-2 py-2 px-3
-    transition-colors duration-200 ease-out
-    focus:outline-none
-    focus-visible:ring-2
-    focus-visible:ring-mauve-500/50
-    focus-visible:ring-offset-2
-    focus-visible:ring-offset-[#111827]
-    ${className}
-  `}
+	href={href}
 	target="_blank"
 	rel="noopener noreferrer"
-	href={href}
-	role="link">
+	class={`
+		inline-flex items-center justify-center gap-2
+		max-w-fit rounded-xl
+		border border-mauve-700 bg-mauve-600
+		px-3 py-2
+		text-white
+		shadow-sm shadow-black/30
+		transition-all duration-200 ease-out
+		hover:bg-mauve-700
+		focus-visible:ring-2
+		focus-visible:ring-mauve-500/50
+		focus-visible:ring-offset-2
+		focus-visible:ring-offset-[#111827]
+		${className}
+	`}>
 	<slot />
 </a>

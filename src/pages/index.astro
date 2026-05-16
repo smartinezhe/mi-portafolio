@@ -13,27 +13,29 @@ import TechStack from '../components/TechStack.astro';
 
 <Layout
 	title="Salem Martínez | Desarrollador Web PHP/Laravel"
-	description="Desarrollo aplicaciones web a medida para pymes que buscan automatizar procesos y proteger sus datos.">
-	<main class="px-4 pt-28">
-		<SectionContainer id="inicio" class="pt-10 pb-24 md:pt-16 md:pb-36">
+	description="Desarrollador web especializado en aplicaciones con Laravel y PHP para automatizar procesos en pequeñas y medianas empresas.">
+	<main class="pt-20">
+		<SectionContainer
+			id="inicio"
+			class="min-h-[calc(100dvh-5rem)] flex items-center">
 			<Hero />
 		</SectionContainer>
-		<div class="space-y-18">
-			<SectionContainer id="sobre-mi">
+		<div class="space-y-24 md:space-y-32">
+			<SectionContainer id="sobre-mi" class="space-y-6 md:space-y-8">
 				<TitleSection>
 					<ProfileIcon class="size-7" />
 					Sobre mi
 				</TitleSection>
 				<AboutMe />
 			</SectionContainer>
-			<SectionContainer id="proyectos">
+			<SectionContainer id="proyectos" class="space-y-6 md:space-y-8">
 				<TitleSection>
 					<BriefcaseIcon class="size-7" />
 					Proyectos
 				</TitleSection>
 				<Projects />
 			</SectionContainer>
-			<SectionContainer id="stack-tecnologico">
+			<SectionContainer id="stack-tecnologico" class="space-y-6 md:space-y-8">
 				<TitleSection>
 					<TechStackIcon class="size-7" />
 					Tecnologías

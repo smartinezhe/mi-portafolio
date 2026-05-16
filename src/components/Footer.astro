@@ -5,17 +5,20 @@ const displayYear =
 	startYear === currentYear ? currentYear : `${startYear}–${currentYear}`;
 ---
 
-<footer class="m-4 mt-16 w-full mx-auto container flex justify-center">
+<footer class="mx-auto mt-16 w-full max-w-5xl px-4 pb-6">
 	<div
-		class="rounded-lg w-full max-w-7xl mx-auto flex items-center justify-center py-4">
-		<span class="text-gray-200 text-sm text-center opacity-80">
+		class="flex justify-center rounded-lg border border-white/10 bg-white/3 py-4">
+		<span class="text-center text-sm text-gray-200 opacity-80">
 			© {displayYear}
+
 			<a
 				href="https://smartinezhe.netlify.app"
 				class="hover:underline"
-				rel="noopener noreferrer"
-				role="link">Salem Martínez</a
-			>. Todos los derechos reservados.
+				rel="noopener noreferrer">
+				Salem Martínez
+			</a>
+
+			. Todos los derechos reservados.
 		</span>
 	</div>
 </footer>
