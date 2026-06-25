@@ -5,7 +5,7 @@ import Laravel from '../assets/icons/Laravel.astro';
 import Tailwind from '../assets/icons/Tailwind.astro';
 import MySQL from '../assets/icons/Mysql.astro';
 import GitHubIcon from '../assets/icons/GitHub.astro';
-import LinkButton from '../components/LinkButton.astro';
+import ProjectLink from './ProjectLink.astro';
 
 const TAGS = {
 	LARAVEL: {
@@ -72,10 +72,10 @@ const PROJECTS = [
 
 					<footer>
 						{github && (
-							<LinkButton href={github}>
+							<ProjectLink href={github}>
 								<GitHubIcon class="size-5" />
 								Ver Proyecto
-							</LinkButton>
+							</ProjectLink>
 						)}
 					</footer>
 				</div>

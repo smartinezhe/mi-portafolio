@@ -1,10 +1,18 @@
 ---
 import Logo from '../assets/logo/Logo.astro';
-import EmailIcon from '../assets/icons/Email.astro';
+import WhatsAppIcon from '../assets/icons/WhatsApp.astro';
 import GitHubIcon from '../assets/icons/GitHub.astro';
-import SocialPill from '../assets/icons/SocialPill.astro';
+import ContactButton from '../assets/icons/ContactButton.astro';
 
 const profile = 'Salem Martínez | Ingeniero de Sistemas y Desarrollador Web';
+
+const whatsappNumber = '573125815262';
+
+const whatsappMessage = encodeURIComponent(
+	'Hola Salem, vi tu portafolio y me gustaría hablar sobre un proyecto.'
+);
+
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 ---
 
 <div class="flex flex-col gap-6">
@@ -22,16 +30,16 @@ const profile = 'Salem Martínez | Ingeniero de Sistemas y Desarrollador Web';
 	</h2>
 
 	<nav class="flex gap-4 flex-wrap">
-		<SocialPill
-			href="mailto:smartinezhe1@gmail.com"
-			class="bg-blue-500 border border-blue-600 hover:bg-blue-600 text-white shadow-sm shadow-black/30 focus-visible:ring-blue-500/50 min-w-35 justify-center">
-			<EmailIcon class="size-5" /> Contáctame
-		</SocialPill>
+		<ContactButton
+			href={whatsappUrl}
+			class="bg-green-500 border border-green-600 hover:bg-green-600 text-black font-semibold shadow-sm shadow-black/30 focus-visible:ring-green-500/50 min-w-35 justify-center">
+			<WhatsAppIcon class="size-5" /> Contáctame
+		</ContactButton>
 
-		<SocialPill
+		<ContactButton
 			href="https://github.com/smartinezhe"
-			class="bg-slate-500 border border-slate-600 hover:bg-slate-600 text-white shadow-sm shadow-black/30 focus-visible:ring-slate-500/50 min-w-35 justify-center">
+			class="bg-slate-500 border border-slate-600 hover:bg-slate-600 text-black font-semibold shadow-sm shadow-black/30 focus-visible:ring-slate-500/50 min-w-35 justify-center">
 			<GitHubIcon class="size-5" /> GitHub
-		</SocialPill>
+		</ContactButton>
 	</nav>
 </div>
