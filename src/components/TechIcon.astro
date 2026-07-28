@@ -3,14 +3,10 @@ const {icon: Icon, name, color} = Astro.props;
 ---
 
 <div
-	class="flex flex-col items-center justify-center gap-3 w-full max-w-40 aspect-17/14
-  rounded-2xl border border-white/20 bg-white/3
-  transition-transform duration-200 ease-out
-  hover:scale-[1.02]
-  active:scale-[0.98]">
-	<Icon style={`color: ${color}`} class="size-16 sm:size-20" />
+	class="inline-flex items-center gap-4 rounded-full border border-white/20 bg-gray-950 px-6 py-3 text-lg transition-all duration-200 ease-out hover:scale-105">
+	<Icon style={`color: ${color}`} class="size-8" />
 
-	<span class="text-sm text-gray-200 opacity-80">
+	<span class="text-gray-200 opacity-90">
 		{name}
 	</span>
 </div>

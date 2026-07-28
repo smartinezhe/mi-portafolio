@@ -19,11 +19,18 @@ const techs = [
 ];
 ---
 
-<div
-	class="grid grid-cols-2 gap-5 justify-items-center sm:grid-cols-3 md:grid-cols-4 md:gap-6">
-	{
-		techs.map((tech) => (
-			<TechIcon icon={tech.icon} name={tech.name} color={tech.color} />
-		))
-	}
+<div class="flex flex-col gap-8">
+	<p class="max-w-3xl text-gray-200 opacity-80 leading-8">
+		En mis proyectos utilizo tecnologías orientadas al desarrollo web moderno,
+		combinando herramientas de frontend y backend para crear aplicaciones
+		rápidas, mantenibles y con una experiencia de usuario cuidada.
+	</p>
+
+	<div class="flex flex-wrap justify-center gap-4">
+		{
+			techs.map((tech) => (
+				<TechIcon icon={tech.icon} name={tech.name} color={tech.color} />
+			))
+		}
+	</div>
 </div>
