@@ -4,6 +4,7 @@ import Proyecto1 from '../assets/projects/proyecto1.webp';
 import Laravel from '../assets/icons/Laravel.astro';
 import Tailwind from '../assets/icons/Tailwind.astro';
 import MySQL from '../assets/icons/Mysql.astro';
+import Filament from '../assets/icons/Filament.astro';
 import GitHubIcon from '../assets/icons/GitHub.astro';
 import ProjectLink from './ProjectLink.astro';
 
@@ -25,6 +26,12 @@ const TAGS = {
 		color: '#00618A',
 		icon: MySQL,
 	},
+
+	FILAMENT: {
+		name: 'Filament',
+		color: '#EFAF5D',
+		icon: Filament,
+	},
 };
 
 const PROJECTS = [
@@ -34,7 +41,7 @@ const PROJECTS = [
 			'Plataforma web que simplifica la gestión de incapacidades laborales, automatizando los procesos administrativos del área de recursos humanos para que las empresas ahorren tiempo y reduzcan errores.',
 		github: 'https://github.com/smartinezhe/sistema-incapacidades',
 		image: Proyecto1,
-		tags: [TAGS.LARAVEL, TAGS.TAILWIND, TAGS.MYSQL],
+		tags: [TAGS.LARAVEL, TAGS.FILAMENT, TAGS.TAILWIND, TAGS.MYSQL],
 	},
 ];
 ---
