@@ -1,0 +1,62 @@
+---
+// Iconos.
+import Laravel from '../../assets/icons/Laravel.astro';
+
+/*
+ * Componente encargado de representar una tecnología.
+ * Muestra un icono acompañado del nombre de la tecnología
+ * dentro de una cápsula con estilos consistentes con el portafolio.
+ */
+
+/*
+ * Propiedades necesarias para renderizar una tecnología.
+ */
+interface Props {
+	icon: typeof Laravel;
+	name: string;
+	color: string;
+}
+
+/*
+ * Obtiene las propiedades utilizadas para renderizar
+ * el icono, el nombre y el color de la tecnología.
+ */
+const {icon: Icon, name, color}: Props = Astro.props;
+
+/*
+ * Estilos del contenedor principal de la tecnología.
+ */
+const techIconClass = `
+	inline-flex
+	items-center
+	gap-3
+	rounded-full
+	border
+	border-white/20
+	bg-gray-950
+	px-5
+	py-3
+	text-lg
+	transition-all
+	duration-200
+	ease-out
+	hover:scale-105
+	active:scale-[0.97]
+`;
+
+/*
+ * Estilos del nombre de la tecnología.
+ */
+const techNameClass = `
+	text-gray-200
+	opacity-90
+`;
+---
+
+<div class={techIconClass}>
+	<Icon class="size-8" style={`color: ${color}`} />
+
+	<span class={techNameClass}>
+		{name}
+	</span>
+</div>

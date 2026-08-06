@@ -1,0 +1,36 @@
+---
+/*
+ * Componente contenedor de secciones.
+ * Centraliza el ancho máximo, el espaciado horizontal y el desplazamiento
+ * para la navegación mediante anclas, manteniendo un diseño consistente
+ * en todas las secciones del portafolio.
+ */
+
+/*
+ * Propiedades opcionales del componente.
+ */
+interface Props {
+	id?: string;
+	class?: string;
+}
+
+/*
+ * Obtiene las propiedades del componente.
+ */
+const {class: className = '', id}: Props = Astro.props;
+
+/*
+ * Estilos base compartidos por todas las secciones.
+ */
+const sectionContainerClass = `
+	mx-auto
+	w-full
+	max-w-5xl
+	px-4
+	scroll-mt-24
+`;
+---
+
+<section id={id} class={`${sectionContainerClass} ${className}`}>
+	<slot />
+</section>

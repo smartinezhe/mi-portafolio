@@ -1,0 +1,35 @@
+---
+/*
+ * Componente encargado de renderizar el título principal de una sección.
+ * Recibe el contenido mediante un slot, permitiendo combinar texto e iconos,
+ * y admite clases adicionales para personalizar su apariencia cuando sea necesario.
+ */
+
+/*
+ * Propiedades opcionales del componente.
+ */
+interface Props {
+	className?: string;
+}
+
+/*
+ * Obtiene las propiedades del componente.
+ */
+const {className = ''}: Props = Astro.props;
+
+/*
+ * Estilos base del título de la sección.
+ */
+const titleSectionClass = `
+	flex
+	items-center
+	gap-x-3
+	text-3xl
+	font-semibold
+	text-white
+`;
+---
+
+<h2 class={`${titleSectionClass} ${className}`}>
+	<slot />
+</h2>

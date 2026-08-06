@@ -1,0 +1,171 @@
+---
+// Iconos.
+import WhatsAppIcon from '../../assets/icons/WhatsApp.astro';
+import GitHubIcon from '../../assets/icons/GitHub.astro';
+
+// Ilustraciones.
+import HeroIllustration from '../../assets/illustration/HeroIllustration.astro';
+
+// Componentes.
+import ContactButton from '../../assets/buttons/ContactButton.astro';
+
+/*
+ * Componente principal de presentación (Hero).
+ * Muestra el nombre, la descripción profesional, los enlaces
+ * de contacto y la ilustración principal del portafolio.
+ */
+
+/*
+ * Número de WhatsApp utilizado para generar el enlace de contacto.
+ */
+const whatsappNumber = '573125815262';
+
+/*
+ * Mensaje predeterminado enviado al iniciar una conversación
+ * mediante WhatsApp.
+ */
+const whatsappMessage = encodeURIComponent(
+	'Hola Salem, vi tu portafolio y me gustaría conversar contigo.'
+);
+
+/*
+ * URL completa para abrir una conversación en WhatsApp.
+ */
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+/*
+ * Estilos compartidos por los botones de contacto.
+ */
+const contactButtonClass = `
+	min-w-35
+	justify-center
+	font-semibold
+	shadow-sm
+	shadow-black/30
+`;
+
+/*
+ * Estilos específicos del botón de WhatsApp.
+ */
+const whatsappButtonClass = `
+	${contactButtonClass}
+	bg-green-400
+	border border-green-500
+	text-black
+	hover:bg-green-500
+	focus-visible:ring-green-500/50
+`;
+
+/*
+ * Estilos específicos del botón de GitHub.
+ */
+const githubButtonClass = `
+	${contactButtonClass}
+	bg-slate-300
+	border border-slate-400
+	text-black
+	hover:bg-slate-400
+	focus-visible:ring-slate-500/50
+`;
+
+/*
+ * Estilos del contenedor principal del Hero.
+ */
+const heroClass = `
+	flex
+	flex-col
+	gap-16
+	lg:flex-row
+	lg:items-center
+	lg:justify-between
+`;
+
+/*
+ * Contenedor del contenido textual.
+ */
+const heroContentClass = `
+	flex
+	max-w-2xl
+	flex-col
+	gap-6
+`;
+
+/*
+ * Estilos del título principal.
+ */
+const heroTitleClass = `
+	text-3xl
+	font-bold
+	text-white
+	md:text-4xl
+	lg:text-5xl
+`;
+
+/*
+ * Estilos de la descripción principal.
+ */
+const heroDescriptionClass = `
+	max-w-xl
+	text-xl
+	text-gray-200
+	opacity-80
+	lg:text-2xl
+`;
+
+/*
+ * Contenedor de los botones de contacto.
+ */
+const heroActionsClass = `
+	flex
+	flex-wrap
+	gap-4
+`;
+
+/*
+ * Contenedor de la ilustración principal.
+ */
+const illustrationContainerClass = `
+	flex
+	justify-center
+	lg:flex-1
+`;
+
+/*
+ * Estilos de la ilustración principal.
+ */
+const illustrationClass = `
+	w-full
+	max-w-sm
+	md:max-w-md
+	lg:max-w-xl
+`;
+---
+
+<div class={heroClass}>
+	<div class={heroContentClass}>
+		<h1 class={heroTitleClass}>Salem Martínez</h1>
+
+		<h2 class={heroDescriptionClass}>
+			Desarrollo aplicaciones web que optimizan procesos y resuelven problemas
+			reales.
+		</h2>
+
+		<div class={heroActionsClass}>
+			<ContactButton href={whatsappUrl} class={whatsappButtonClass}>
+				<WhatsAppIcon class="size-5" />
+				Contáctame
+			</ContactButton>
+
+			<ContactButton
+				href="https://github.com/smartinezhe"
+				class={githubButtonClass}>
+				<GitHubIcon class="size-5" />
+				GitHub
+			</ContactButton>
+		</div>
+	</div>
+
+	<div class={illustrationContainerClass}>
+		<HeroIllustration class={illustrationClass} />
+	</div>
+</div>

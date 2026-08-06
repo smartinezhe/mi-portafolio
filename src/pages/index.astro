@@ -1,47 +1,74 @@
 ---
+// Layout.
 import Layout from '../layouts/Layout.astro';
-import SectionContainer from '../components/SectionContainer.astro';
+
+// Componentes.
+import Hero from '../components/hero/Hero.astro';
+import ContentSection from '../components/layout/ContentSection.astro';
+import Projects from '../components/projects/Projects.astro';
+import AboutMe from '../components/about/AboutMe.astro';
+import TechStack from '../components/tech-stack/TechStack.astro';
+
+// Iconos.
 import BriefcaseIcon from '../assets/icons/Briefcase.astro';
 import ProfileIcon from '../assets/icons/Profile.astro';
 import TechStackIcon from '../assets/icons/Code.astro';
-import Hero from '../components/Hero.astro';
-import TitleSection from '../components/TitleSection.astro';
-import Projects from '../components/Projects.astro';
-import AboutMe from '../components/AboutMe.astro';
-import TechStack from '../components/TechStack.astro';
+
+/*
+ * Página principal del portafolio.
+ * Organiza las diferentes secciones del sitio dentro del layout
+ * principal, manteniendo una estructura clara y semántica.
+ */
+
+/*
+ * Estilos del contenedor principal de la página.
+ */
+const mainClass = `
+	pt-20
+`;
+
+/*
+ * Estilos de la sección Hero.
+ * Ocupa prácticamente toda la altura de la ventana y centra
+ * verticalmente su contenido.
+ */
+const heroSectionClass = `
+	flex
+	min-h-[calc(100svh-5rem)]
+	items-center
+	pt-10
+	lg:pt-0
+`;
+
+/*
+ * Espaciado vertical entre las secciones del portafolio.
+ */
+const sectionsContainerClass = `
+	space-y-24
+	md:space-y-32
+`;
 ---
 
 <Layout
 	title="Salem Martínez | Desarrollador Full Stack PHP/Laravel"
-	description="Construyo aplicaciones web modernas y escalables con PHP y Laravel.">
-	<main class="pt-20">
-		<SectionContainer
-			id="inicio"
-			class="min-h-[calc(100svh-5rem)] flex items-center">
+	description="Desarrollo aplicaciones web que optimizan procesos y resuelven problemas reales.">
+	<main class={mainClass}>
+		<ContentSection id="inicio" class={heroSectionClass}>
 			<Hero />
-		</SectionContainer>
-		<div class="space-y-24 md:space-y-32">
-			<SectionContainer id="sobre-mi" class="space-y-6 md:space-y-8">
-				<TitleSection>
-					<ProfileIcon class="size-7" />
-					Sobre mi
-				</TitleSection>
+		</ContentSection>
+
+		<div class={sectionsContainerClass}>
+			<ContentSection id="acerca-de-mi" title="Acerca de Mí" icon={ProfileIcon}>
 				<AboutMe />
-			</SectionContainer>
-			<SectionContainer id="proyectos" class="space-y-6 md:space-y-8">
-				<TitleSection>
-					<BriefcaseIcon class="size-7" />
-					Proyectos
-				</TitleSection>
+			</ContentSection>
+
+			<ContentSection id="proyectos" title="Proyectos" icon={BriefcaseIcon}>
 				<Projects />
-			</SectionContainer>
-			<SectionContainer id="stack-tecnologico" class="space-y-6 md:space-y-8">
-				<TitleSection>
-					<TechStackIcon class="size-7" />
-					Tecnologías
-				</TitleSection>
+			</ContentSection>
+
+			<ContentSection id="tecnologias" title="Tecnologías" icon={TechStackIcon}>
 				<TechStack />
-			</SectionContainer>
+			</ContentSection>
 		</div>
 	</main>
 </Layout>

@@ -1,0 +1,166 @@
+---
+// Librerías.
+import {Image} from 'astro:assets';
+import type {ImageMetadata} from 'astro';
+
+// Iconos.
+import GitHubIcon from '../../assets/icons/GitHub.astro';
+import Laravel from '../../assets/icons/Laravel.astro';
+
+// Componentes.
+import ProjectLink from './ProjectLink.astro';
+import ProjectTag from './ProjectTag.astro';
+
+/*
+ * Componente encargado de renderizar una tarjeta de proyecto.
+ * Muestra la imagen, el título, la descripción, las tecnologías
+ * utilizadas y un enlace al repositorio del proyecto.
+ */
+
+/*
+ * Representa una tecnología utilizada en un proyecto.
+ * Cada etiqueta incluye un nombre, un color y el componente
+ * que renderiza su icono correspondiente.
+ */
+interface Tag {
+	name: string;
+	color: string;
+	icon: typeof Laravel;
+}
+
+/*
+ * Propiedades necesarias para renderizar una tarjeta del proyecto.
+ */
+interface Props {
+	title: string;
+	description: string;
+	image: ImageMetadata;
+	github?: string;
+	tags: Tag[];
+}
+
+/*
+ * Obtiene las propiedades necesarias para renderizar la tarjeta.
+ */
+const {title, description, image, github, tags}: Props = Astro.props;
+
+/*
+ * Estilos principales de la tarjeta del proyecto.
+ */
+const projectCardClass = `
+	flex
+	flex-col
+	items-center
+	gap-8
+	rounded-2xl
+	border
+	border-white/20
+	bg-white/3
+	p-6
+	md:flex-row
+`;
+
+/*
+ * Contenedor de la imagen del proyecto.
+ */
+const imageContainerClass = `
+	flex
+	w-full
+	items-center
+	justify-center
+	md:w-1/2
+`;
+
+/*
+ * Estilos aplicados a la imagen del proyecto.
+ */
+const imageClass = `
+	aspect-video
+	w-full
+	rounded-xl
+	object-cover
+`;
+
+/*
+ * Contenedor de la información textual del proyecto.
+ */
+const projectContentClass = `
+	flex
+	w-full
+	flex-col
+	gap-6
+	md:w-1/2
+	md:max-w-lg
+`;
+
+/*
+ * Agrupa el título, las tecnologías y la descripción.
+ */
+const projectInfoClass = `
+	space-y-4
+`;
+
+/*
+ * Estilos del título del proyecto.
+ */
+const projectTitleClass = `
+	text-2xl
+	font-semibold
+	text-white
+`;
+
+/*
+ * Contenedor de las tecnologías utilizadas en el proyecto.
+ */
+const tagListClass = `
+	flex
+	flex-wrap
+	gap-2
+`;
+
+/*
+ * Estilos de la descripción del proyecto.
+ */
+const projectDescriptionClass = `
+	leading-7
+	text-gray-200
+	opacity-80
+`;
+---
+
+<article class={projectCardClass}>
+	<div class={imageContainerClass}>
+		<Image src={image} alt={title} class={imageClass} />
+	</div>
+
+	<div class={projectContentClass}>
+		<div class={projectInfoClass}>
+			<h3 class={projectTitleClass}>
+				{title}
+			</h3>
+
+			<ul class={tagListClass}>
+				{
+					tags.map((tag) => (
+						<ProjectTag name={tag.name} color={tag.color} icon={tag.icon} />
+					))
+				}
+			</ul>
+
+			<p class={projectDescriptionClass}>
+				{description}
+			</p>
+		</div>
+
+		<footer>
+			{
+				github && (
+					<ProjectLink href={github}>
+						<GitHubIcon class="size-5" />
+						Ver Proyecto
+					</ProjectLink>
+				)
+			}
+		</footer>
+	</div>
+</article>

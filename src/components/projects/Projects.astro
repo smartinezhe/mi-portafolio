@@ -1,0 +1,86 @@
+---
+// Componentes.
+import ProjectCard from './ProjectCard.astro';
+
+// Imágenes.
+import Proyecto1 from '../../assets/img-projects/proyecto1.webp';
+
+// Iconos.
+import Laravel from '../../assets/icons/Laravel.astro';
+import Tailwind from '../../assets/icons/Tailwind.astro';
+import MySQL from '../../assets/icons/Mysql.astro';
+import Filament from '../../assets/icons/Filament.astro';
+
+/*
+ * Componente encargado de renderizar el listado de proyectos del portafolio.
+ * Define las tecnologías disponibles y la información de cada proyecto para
+ * delegar su representación al componente ProjectCard.
+ */
+
+/*
+ * Representa una tecnología utilizada en un proyecto.
+ */
+interface Tag {
+	name: string;
+	color: string;
+	icon: typeof Laravel;
+}
+
+/*
+ * Representa la información necesaria para renderizar un proyecto.
+ */
+interface Project {
+	title: string;
+	description: string;
+	github?: string;
+	image: typeof Proyecto1;
+	tags: Tag[];
+}
+
+/*
+ * Tecnologías utilizadas en los proyectos del portafolio.
+ */
+const tags: Record<string, Tag> = {
+	LARAVEL: {
+		name: 'Laravel',
+		color: '#FF2D20',
+		icon: Laravel,
+	},
+
+	TAILWIND: {
+		name: 'Tailwind',
+		color: '#38BDF8',
+		icon: Tailwind,
+	},
+
+	MYSQL: {
+		name: 'MySQL',
+		color: '#00618A',
+		icon: MySQL,
+	},
+
+	FILAMENT: {
+		name: 'Filament',
+		color: '#EFAF5D',
+		icon: Filament,
+	},
+};
+
+/*
+ * Proyectos que se mostrarán en el portafolio.
+ */
+const projects: Project[] = [
+	{
+		title: 'Sistema de Gestión de Incapacidades Laborales',
+		description:
+			'Plataforma web que simplifica la gestión de incapacidades laborales, automatizando los procesos administrativos del área de recursos humanos para que las empresas ahorren tiempo y reduzcan errores.',
+		github: 'https://github.com/smartinezhe/sistema-incapacidades',
+		image: Proyecto1,
+		tags: [tags.LARAVEL, tags.FILAMENT, tags.TAILWIND, tags.MYSQL],
+	},
+];
+---
+
+<div class="flex flex-col gap-16">
+	{projects.map((project) => <ProjectCard {...project} />)}
+</div>

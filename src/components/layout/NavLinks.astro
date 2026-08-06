@@ -1,0 +1,38 @@
+---
+/*
+ * Componente encargado de renderizar una lista de enlaces de navegación.
+ * Se utiliza tanto en el menú principal de escritorio como en el menú
+ * móvil, permitiendo reutilizar la misma estructura con diferentes estilos.
+ */
+
+/*
+ * Representa un enlace de navegación.
+ */
+interface NavLink {
+	title: string;
+	label: string;
+	url: string;
+}
+
+/*
+ * Propiedades que recibe el componente.
+ */
+interface Props {
+	items: NavLink[];
+	linkClassName?: string;
+}
+
+/*
+ * Obtiene la lista de enlaces y las clases CSS que se aplicarán
+ * a cada uno. Si no se proporcionan clases, se utiliza una cadena vacía.
+ */
+const {items, linkClassName = ''}: Props = Astro.props;
+---
+
+{
+	items.map((link) => (
+		<a href={link.url} aria-label={link.label} class={linkClassName}>
+			{link.title}
+		</a>
+	))
+}

@@ -1,0 +1,63 @@
+---
+/*
+ * Componente encargado de renderizar un enlace hacia un proyecto.
+ * Se utiliza para dirigir al usuario a recursos externos, como
+ * el repositorio de GitHub, manteniendo una apariencia consistente
+ * en todas las tarjetas de proyectos.
+ */
+
+/*
+ * Propiedades necesarias para renderizar el enlace.
+ */
+interface Props {
+	href: string;
+	class?: string;
+}
+
+/*
+ * Obtiene las propiedades utilizadas para construir el enlace.
+ */
+const {href, class: className = ''}: Props = Astro.props;
+
+/*
+ * Estilos base compartidos por todos los enlaces de proyectos.
+ * Las clases recibidas mediante la prop `class` permiten extender
+ * o sobrescribir estilos cuando sea necesario.
+ */
+const projectLinkClass = `
+	inline-flex
+	items-center
+	justify-center
+	gap-2
+	max-w-fit
+	rounded-xl
+	px-3
+	py-2
+
+	bg-indigo-400
+	border border-indigo-500
+
+	text-black
+	font-semibold
+
+	shadow-sm shadow-black/30
+
+	transition-colors duration-200 ease-out
+
+	hover:bg-indigo-500
+
+	focus:outline-none
+	focus-visible:ring-2
+	focus-visible:ring-offset-2
+	focus-visible:ring-offset-[#111827]
+	focus-visible:ring-indigo-500/50
+`;
+---
+
+<a
+	href={href}
+	target="_blank"
+	rel="noopener noreferrer"
+	class={`${projectLinkClass} ${className}`}>
+	<slot />
+</a>

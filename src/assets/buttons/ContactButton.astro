@@ -1,0 +1,49 @@
+---
+/*
+ * Componente reutilizable para renderizar enlaces con apariencia de botón.
+ * Se utiliza para acciones principales como contactar por WhatsApp o visitar
+ * un perfil de GitHub, manteniendo una apariencia y comportamiento consistente.
+ */
+
+/*
+ * Propiedades del componente.
+ * Permite recibir clases adicionales y cualquier atributo válido de un enlace.
+ */
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+	class?: string;
+}
+
+/*
+ * Obtiene las propiedades del componente.
+ */
+const {class: className = '', ...props}: Props = Astro.props;
+
+/*
+ * Estilos base compartidos por todos los botones de acción.
+ */
+const contactButtonClass = `
+	flex
+	items-center
+	justify-center
+	gap-x-2
+	rounded-xl
+	px-3
+	py-2
+	transition-colors
+	duration-200
+	ease-out
+	focus:outline-none
+	focus-visible:ring-2
+	focus-visible:ring-offset-2
+	focus-visible:ring-offset-[#111827]
+`;
+---
+
+<a
+	class={`${contactButtonClass} ${className}`}
+	target="_blank"
+	rel="noopener noreferrer"
+	role="link"
+	{...props}>
+	<slot />
+</a>

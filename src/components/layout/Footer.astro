@@ -1,0 +1,93 @@
+---
+/*
+ * Componente encargado de renderizar el pie de página del sitio.
+ * Muestra el rango de años del proyecto y un enlace al sitio web
+ * del autor.
+ */
+
+/*
+ * Propiedades que recibe el componente.
+ */
+interface Props {
+	author?: string;
+	website?: string;
+	startYear?: number;
+}
+
+/*
+ * Obtiene y desestructura las propiedades del componente.
+ * Se definen valores por defecto para facilitar su
+ * reutilización en otros proyectos.
+ */
+const {
+	author = 'Salem Martínez',
+	website = 'https://smartinezhe.netlify.app',
+	startYear = 2026,
+}: Props = Astro.props;
+
+/*
+ * Obtiene el año actual para calcular automáticamente el rango
+ * de años que se mostrará en el copyright.
+ */
+const currentYear = new Date().getFullYear();
+
+/*
+ * Si el proyecto comenzó este mismo año, se muestra un único año.
+ * En caso contrario, se genera un rango (por ejemplo: 2026 – 2028).
+ */
+const displayYear =
+	startYear === currentYear ? currentYear : `${startYear} – ${currentYear}`;
+
+/*
+ * Estilos del contenedor principal del pie de página.
+ */
+const footerClass = `
+	mx-auto
+	mt-16
+	w-full
+	max-w-5xl
+	px-4
+	pb-6
+`;
+
+/*
+ * Estilos del contenedor que agrupa el contenido del pie de página.
+ */
+const footerContentClass = `
+	flex
+	justify-center
+	rounded-lg
+	border
+	border-white/10
+	bg-white/3
+	py-4
+`;
+
+/*
+ * Estilos del texto del pie de página.
+ */
+const footerTextClass = `
+	text-center
+	text-sm
+	text-gray-200
+	opacity-80
+`;
+
+/*
+ * Estilos del enlace al sitio web del autor.
+ */
+const footerLinkClass = `
+	hover:underline
+`;
+---
+
+<footer class={footerClass}>
+	<div class={footerContentClass}>
+		<span class={footerTextClass}>
+			© {displayYear}{' '}
+			<a href={website} class={footerLinkClass} rel="noopener noreferrer">
+				{author}
+			</a>. Hecho con Astro ❤️​
+		</span>
+	</div>
+</footer>

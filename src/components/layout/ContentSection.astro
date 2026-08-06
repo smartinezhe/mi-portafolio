@@ -1,0 +1,49 @@
+---
+// Componentes.
+import SectionContainer from './SectionContainer.astro';
+import TitleSection from './TitleSection.astro';
+
+// Iconos.
+import ProfileIcon from '../../assets/icons/Profile.astro';
+
+/*
+ * Componente encargado de renderizar una sección del portafolio.
+ * Encapsula el contenedor, el título de la sección y su contenido,
+ * evitando repetir esta estructura en la página principal.
+ */
+
+/*
+ * Propiedades que recibe el componente.
+ */
+interface Props {
+	id: string;
+	title?: string;
+	icon?: typeof ProfileIcon;
+	class?: string;
+}
+
+/*
+ * Obtiene y desestructura las propiedades del componente.
+ */
+const {id, title, icon: Icon, class: className = ''}: Props = Astro.props;
+
+/*
+ * Espaciado compartido por las secciones que incluyen título.
+ */
+const contentSectionClass = `
+	space-y-6
+	md:space-y-8
+`;
+---
+
+<SectionContainer id={id} class={`${contentSectionClass} ${className}`}>
+	{
+		title && Icon && (
+			<TitleSection>
+				<Icon class="size-7" />
+				{title}
+			</TitleSection>
+		)
+	}
+	<slot />
+</SectionContainer>
