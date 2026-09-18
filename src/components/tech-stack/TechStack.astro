@@ -43,6 +43,13 @@ const techs: Tech[] = [
 ];
 
 /*
+ * Copia duplicada del arreglo original. Es la base del efecto de
+ * carrusel infinito: la pista se traslada -50% y, al ser la segunda
+ * mitad idéntica a la primera, el "salto" es imperceptible.
+ */
+const marqueeTechs = [...techs, ...techs];
+
+/*
  * Estilos del párrafo descriptivo.
  */
 const descriptionClass = `
@@ -53,12 +60,29 @@ const descriptionClass = `
 `;
 
 /*
- * Contenedor de las tecnologías.
+ * Contenedor exterior del carrusel: oculta el desbordamiento y
+ * aplica un degradado en los bordes para que las cápsulas no
+ * aparezcan/desaparezcan de forma abrupta.
  */
-const techListClass = `
+const techMarqueeClass = `
+	tech-marquee
+	relative
+	w-full
+	overflow-hidden
+	[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
+	[-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
+`;
+
+/*
+ * Pista interna que contiene ambas copias de tecnologías y
+ * lleva la animación de desplazamiento continuo.
+ */
+const techTrackClass = `
+	tech-track
 	flex
-	flex-wrap
-	justify-center
+	w-max
+	flex-nowrap
+	items-center
 	gap-4
 `;
 ---
@@ -70,11 +94,18 @@ const techListClass = `
 		rápidas, mantenibles y con una experiencia de usuario cuidada.
 	</p>
 
-	<div class={techListClass}>
-		{
-			techs.map((tech) => (
-				<TechIcon icon={tech.icon} name={tech.name} color={tech.color} />
-			))
-		}
+	<div class={techMarqueeClass}>
+		<div class={techTrackClass}>
+			{
+				marqueeTechs.map((tech, index) => (
+					<TechIcon
+						icon={tech.icon}
+						name={tech.name}
+						color={tech.color}
+						ariaHidden={index >= techs.length}
+					/>
+				))
+			}
+		</div>
 	</div>
 </div>

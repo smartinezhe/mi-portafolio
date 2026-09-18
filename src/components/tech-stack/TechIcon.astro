@@ -15,13 +15,14 @@ interface Props {
 	icon: typeof Laravel;
 	name: string;
 	color: string;
+	ariaHidden?: boolean;
 }
 
 /*
  * Obtiene las propiedades utilizadas para renderizar
  * el icono, el nombre y el color de la tecnología.
  */
-const {icon: Icon, name, color}: Props = Astro.props;
+const {icon: Icon, name, color, ariaHidden = false}: Props = Astro.props;
 
 /*
  * Estilos del contenedor principal de la tecnología.
@@ -30,18 +31,13 @@ const techIconClass = `
 	inline-flex
 	items-center
 	gap-3
-	rounded-full
+	rounded-xl
 	border
 	border-white/20
 	bg-gray-950
 	px-4
 	py-2
 	text-lg
-	transition-all
-	duration-200
-	ease-out
-	hover:scale-105
-	active:scale-[0.97]
 `;
 
 /*
@@ -53,7 +49,7 @@ const techNameClass = `
 `;
 ---
 
-<div class={techIconClass}>
+<div class={techIconClass} aria-hidden={ariaHidden || undefined}>
 	<Icon class="size-7" style={`color: ${color}`} />
 
 	<span class={techNameClass}>

@@ -21,8 +21,31 @@ a {
 	-webkit-tap-highlight-color: transparent;
 }
 
+@layer components {
+	.tech-track {
+		animation: scroll-tech 28s linear infinite;
+	}
+
+	.tech-marquee:hover .tech-track {
+		animation-play-state: paused;
+	}
+}
+
+@keyframes scroll-tech {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
+	}
+
+	.tech-track {
+		animation: none;
 	}
 }
