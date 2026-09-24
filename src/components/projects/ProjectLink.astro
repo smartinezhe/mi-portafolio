@@ -25,32 +25,26 @@ const {href, class: className = ''}: Props = Astro.props;
  * o sobrescribir estilos cuando sea necesario.
  */
 const projectLinkClass = `
-	inline-flex
+    inline-flex
 	items-center
 	justify-center
-	gap-2
+	gap-x-2
 	max-w-fit
 	rounded-xl
 	px-3
 	py-2
-
-	bg-indigo-400
-	border border-indigo-500
-
+	bg-slate-300
+	border border-slate-400
 	text-black
 	font-semibold
-
 	shadow-sm shadow-black/30
-
 	transition-colors duration-200 ease-out
-
-	hover:bg-indigo-500
-
+	hover:bg-slate-400
 	focus:outline-none
 	focus-visible:ring-2
 	focus-visible:ring-offset-2
-	focus-visible:ring-offset-[#111827]
-	focus-visible:ring-indigo-500/50
+	focus-visible:ring-offset-[#191b21]
+	focus-visible:ring-slate-500/50
 `;
 ---
 

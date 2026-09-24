@@ -1,8 +1,11 @@
 ---
 /*
  * Componente reutilizable para renderizar enlaces con apariencia de botón.
- * Se utiliza para acciones principales como contactar por WhatsApp o visitar
- * un perfil de GitHub, manteniendo una apariencia y comportamiento consistente.
+ * Se utiliza para acciones principales de contacto, ya sean enlaces externos
+ * (como WhatsApp o GitHub) o internos (como una sección de la misma página),
+ * manteniendo una apariencia y comportamiento consistente. El comportamiento
+ * de navegación (`target`, `rel`) se define por quien consume el componente,
+ * según corresponda al tipo de enlace.
  */
 
 /*
@@ -21,7 +24,7 @@ const {class: className = '', ...props}: Props = Astro.props;
 /*
  * Estilos base compartidos por todos los botones de acción.
  */
-const contactButtonClass = `
+const baseButtonClass = `
 	flex
 	items-center
 	justify-center
@@ -35,15 +38,10 @@ const contactButtonClass = `
 	focus:outline-none
 	focus-visible:ring-2
 	focus-visible:ring-offset-2
-	focus-visible:ring-offset-[#111827]
+	focus-visible:ring-offset-[#191b21]
 `;
 ---
 
-<a
-	class={`${contactButtonClass} ${className}`}
-	target="_blank"
-	rel="noopener noreferrer"
-	role="link"
-	{...props}>
+<a class={`${baseButtonClass} ${className}`} role="link" {...props}>
 	<slot />
 </a>

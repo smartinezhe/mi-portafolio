@@ -7,12 +7,10 @@ import Hero from '../components/hero/Hero.astro';
 import ContentSection from '../components/layout/ContentSection.astro';
 import Projects from '../components/projects/Projects.astro';
 import AboutMe from '../components/about/AboutMe.astro';
-import TechStack from '../components/tech-stack/TechStack.astro';
 
 // Iconos.
 import BriefcaseIcon from '../assets/icons/Briefcase.astro';
 import ProfileIcon from '../assets/icons/Profile.astro';
-import TechStackIcon from '../assets/icons/Code.astro';
 
 /*
  * Página principal del portafolio.
@@ -64,10 +62,6 @@ const sectionsContainerClass = `
 
 			<ContentSection id="proyectos" title="Proyectos" icon={BriefcaseIcon}>
 				<Projects />
-			</ContentSection>
-
-			<ContentSection id="tecnologias" title="Tecnologías" icon={TechStackIcon}>
-				<TechStack />
 			</ContentSection>
 		</div>
 	</main>

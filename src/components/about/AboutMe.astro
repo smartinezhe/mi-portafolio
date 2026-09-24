@@ -1,30 +1,118 @@
 ---
+// Componentes.
+import TechIcon from './TechIcon.astro';
+
+// Iconos.
+import HTML5 from '../../assets/icons/Html5.astro';
+import CSS3 from '../../assets/icons/Css3.astro';
+import JavaScript from '../../assets/icons/Javascript.astro';
+import Tailwind from '../../assets/icons/Tailwind.astro';
+import PHP from '../../assets/icons/Php.astro';
+import MySQL from '../../assets/icons/Mysql.astro';
+import Laravel from '../../assets/icons/Laravel.astro';
+import Filament from '../../assets/icons/Filament.astro';
+
 /*
- * Componente encargado de presentar una breve descripción profesional.
- * Resume el perfil, el enfoque de trabajo y el tipo de soluciones
- * que desarrollo como Ingeniero de Sistemas.
+ * Componente encargado de presentar una breve descripción profesional
+ * y el carrusel de tecnologías que utilizo en el desarrollo de
+ * aplicaciones web. Resume el perfil, el enfoque de trabajo y el
+ * stack técnico como una sola narrativa dentro de "Acerca de Mí".
  */
+
+/*
+ * Representa una tecnología utilizada en el portafolio.
+ */
+interface Tech {
+	name: string;
+	color: string;
+	icon: typeof Laravel;
+}
+
+/*
+ * Tecnologías que forman parte de mi stack de desarrollo.
+ */
+const techs: Tech[] = [
+	{name: 'HTML5', icon: HTML5, color: '#FB490B'},
+	{name: 'CSS3', icon: CSS3, color: '#663399'},
+	{name: 'JavaScript', icon: JavaScript, color: '#F0DB4F'},
+	{name: 'Tailwind CSS', icon: Tailwind, color: '#38BDF8'},
+	{name: 'PHP', icon: PHP, color: '#1E88E5'},
+	{name: 'MySQL', icon: MySQL, color: '#00618A'},
+	{name: 'Laravel', icon: Laravel, color: '#FF2D20'},
+	{name: 'Filament', icon: Filament, color: '#EFAF5D'},
+];
+
+/*
+ * Copia duplicada del arreglo original. Es la base del efecto de
+ * carrusel infinito: la pista se traslada -50% y, al ser la segunda
+ * mitad idéntica a la primera, el "salto" es imperceptible.
+ */
+const marqueeTechs = [...techs, ...techs];
 
 /*
  * Estilos del párrafo descriptivo.
  */
 const descriptionClass = `
-	max-w-4xl
+	max-w-5xl
 	text-gray-200
 	leading-8
 	opacity-80
 `;
+
+/*
+ * Contenedor exterior del carrusel: oculta el desbordamiento y
+ * aplica un degradado en los bordes para que las cápsulas no
+ * aparezcan/desaparezcan de forma abrupta.
+ */
+const techMarqueeClass = `
+	tech-marquee
+	relative
+	w-full
+	overflow-hidden
+	[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
+	[-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
+`;
+
+/*
+ * Pista interna que contiene ambas copias de tecnologías y
+ * lleva la animación de desplazamiento continuo.
+ */
+const techTrackClass = `
+	tech-track
+	flex
+	w-max
+	flex-nowrap
+	items-center
+	gap-4
+`;
 ---
 
-<article>
+<article class="flex flex-col gap-8">
 	<p class={descriptionClass}>
 		Mi nombre es Salem José Martínez Herrera, Ingeniero de Sistemas. Desarrollo
 		aplicaciones web escalables, funcionales y mantenibles que ayudan a las
-		empresas a optimizar sus procesos. Entre los proyectos que he desarrollado
-		se encuentra una plataforma para gestionar incapacidades laborales en
-		pequeñas y medianas empresas, pensada para simplificar las tareas
-		administrativas del área de recursos humanos. Aplico buenas prácticas de
-		desarrollo para crear software confiable, fácil de mantener y preparado para
-		crecer junto con cada proyecto.
+		empresas a optimizar sus procesos, combinando herramientas de frontend y
+		backend para crear soluciones rápidas y con una experiencia de usuario
+		cuidada. Entre los proyectos que he desarrollado se encuentra una plataforma
+		para gestionar incapacidades laborales en pequeñas y medianas empresas,
+		pensada para simplificar las tareas administrativas del área de recursos
+		humanos. Aplico buenas prácticas de desarrollo para crear software
+		confiable, fácil de mantener y preparado para crecer junto con cada
+		proyecto.
 	</p>
+
+	<div class={techMarqueeClass}>
+		<div class={techTrackClass}>
+			{
+				marqueeTechs.map((tech, index) => (
+					<TechIcon
+						icon={tech.icon}
+						name={tech.name}
+						color={tech.color}
+						ariaHidden={index >= techs.length}
+					/>
+				))
+			}
+		</div>
+	</div>
 </article>

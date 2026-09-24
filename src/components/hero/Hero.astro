@@ -1,7 +1,6 @@
 ---
 // Iconos.
 import WhatsAppIcon from '../../assets/icons/WhatsApp.astro';
-import GitHubIcon from '../../assets/icons/GitHub.astro';
 
 // Ilustraciones.
 import HeroIllustration from '../../assets/illustration/HeroIllustration.astro';
@@ -11,7 +10,7 @@ import ContactButton from '../../assets/buttons/ContactButton.astro';
 
 /*
  * Componente principal de presentación (Hero).
- * Muestra el nombre, la descripción profesional, los enlaces
+ * Muestra el nombre, la descripción profesional, el enlace
  * de contacto y la ilustración principal del portafolio.
  */
 
@@ -21,51 +20,24 @@ import ContactButton from '../../assets/buttons/ContactButton.astro';
 const whatsappNumber = '573125815262';
 
 /*
- * Mensaje predeterminado enviado al iniciar una conversación
- * mediante WhatsApp.
- */
-const whatsappMessage = encodeURIComponent(
-	'Hola Salem, vi tu portafolio y me gustaría conversar contigo.'
-);
-
-/*
  * URL completa para abrir una conversación en WhatsApp.
  */
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
 /*
- * Estilos compartidos por los botones de contacto.
+ * Estilos específicos del botón contacto.
  */
 const contactButtonClass = `
-	min-w-35
+    min-w-35
 	justify-center
 	font-semibold
 	shadow-sm
 	shadow-black/30
-`;
-
-/*
- * Estilos específicos del botón de WhatsApp.
- */
-const whatsappButtonClass = `
-	${contactButtonClass}
-	bg-green-400
-	border border-green-500
+	bg-emerald-400
+	border border-emerald-500
 	text-black
-	hover:bg-green-500
-	focus-visible:ring-green-500/50
-`;
-
-/*
- * Estilos específicos del botón de GitHub.
- */
-const githubButtonClass = `
-	${contactButtonClass}
-	bg-slate-300
-	border border-slate-400
-	text-black
-	hover:bg-slate-400
-	focus-visible:ring-slate-500/50
+	hover:bg-emerald-500
+	focus-visible:ring-emerald-500/50
 `;
 
 /*
@@ -150,16 +122,13 @@ const illustrationClass = `
 		</h2>
 
 		<div class={heroActionsClass}>
-			<ContactButton href={whatsappUrl} class={whatsappButtonClass}>
-				<WhatsAppIcon class="size-5" />
-				Contáctame
-			</ContactButton>
-
 			<ContactButton
-				href="https://github.com/smartinezhe"
-				class={githubButtonClass}>
-				<GitHubIcon class="size-5" />
-				GitHub
+				href={whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class={contactButtonClass}>
+				<WhatsAppIcon class="size-5" />
+				Hablemos de tu proyecto
 			</ContactButton>
 		</div>
 	</div>
