@@ -1,13 +1,19 @@
 @import 'tailwindcss';
 @import '@fontsource-variable/jetbrains-mono';
 
+@theme {
+	--color-background: #191b21;
+	--color-foreground: #e5e7eb;
+	--color-foreground-muted: #9ca3af;
+}
+
 html {
 	font-family: 'JetBrains Mono Variable', monospace;
 	scroll-behavior: smooth;
 }
 
 body {
-	background: #191b21;
+	background: var(--color-background);
 	display: flex;
 	flex-direction: column;
 	min-height: 100svh;

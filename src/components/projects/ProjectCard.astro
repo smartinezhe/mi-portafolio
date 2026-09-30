@@ -3,12 +3,14 @@
 import {Image} from 'astro:assets';
 import type {ImageMetadata} from 'astro';
 
+// Tipos.
+import type {Tech} from '../../types';
+
 // Iconos.
 import GitHubIcon from '../../assets/icons/GitHub.astro';
-import Laravel from '../../assets/icons/Laravel.astro';
 
 // Componentes.
-import ProjectLink from './ProjectLink.astro';
+import Button from '../../assets/buttons/Button.astro';
 import ProjectTag from './ProjectTag.astro';
 
 /*
@@ -18,17 +20,6 @@ import ProjectTag from './ProjectTag.astro';
  */
 
 /*
- * Representa una tecnología utilizada en un proyecto.
- * Cada etiqueta incluye un nombre, un color y el componente
- * que renderiza su icono correspondiente.
- */
-interface Tag {
-	name: string;
-	color: string;
-	icon: typeof Laravel;
-}
-
-/*
  * Propiedades necesarias para renderizar una tarjeta del proyecto.
  */
 interface Props {
@@ -36,7 +27,7 @@ interface Props {
 	description: string;
 	image: ImageMetadata;
 	github?: string;
-	tags: Tag[];
+	tags: Tech[];
 }
 
 /*
@@ -122,15 +113,21 @@ const tagListClass = `
  * Estilos de la descripción del proyecto.
  */
 const projectDescriptionClass = `
-	leading-7
-	text-gray-200
-	opacity-80
+	text-foreground
+    leading-7
+	
 `;
 ---
 
 <article class={projectCardClass}>
 	<div class={imageContainerClass}>
-		<Image src={image} alt={title} class={imageClass} />
+		<Image
+			src={image}
+			alt={title}
+			class={imageClass}
+			loading="lazy"
+			decoding="async"
+		/>
 	</div>
 
 	<div class={projectContentClass}>
@@ -155,10 +152,14 @@ const projectDescriptionClass = `
 		<footer>
 			{
 				github && (
-					<ProjectLink href={github}>
+					<Button
+						href={github}
+						target="_blank"
+						rel="noopener noreferrer"
+						variant="slate">
 						<GitHubIcon class="size-5" />
 						Ver Proyecto
-					</ProjectLink>
+					</Button>
 				)
 			}
 		</footer>

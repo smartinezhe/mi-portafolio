@@ -2,6 +2,9 @@
 // Componentes.
 import ProjectCard from './ProjectCard.astro';
 
+// Tipos.
+import type {Tech} from '../../types';
+
 // Imágenes.
 import Proyecto1 from '../../assets/img-projects/proyecto1.webp';
 
@@ -18,15 +21,6 @@ import Filament from '../../assets/icons/Filament.astro';
  */
 
 /*
- * Representa una tecnología utilizada en un proyecto.
- */
-interface Tag {
-	name: string;
-	color: string;
-	icon: typeof Laravel;
-}
-
-/*
  * Representa la información necesaria para renderizar un proyecto.
  */
 interface Project {
@@ -34,13 +28,13 @@ interface Project {
 	description: string;
 	github?: string;
 	image: typeof Proyecto1;
-	tags: Tag[];
+	tags: Tech[];
 }
 
 /*
  * Tecnologías utilizadas en los proyectos del portafolio.
  */
-const tags: Record<string, Tag> = {
+const tags: Record<string, Tech> = {
 	LARAVEL: {
 		name: 'Laravel',
 		color: '#FF2D20',

@@ -26,6 +26,11 @@ const navItems = [
 		label: 'proyectos',
 		url: '#proyectos',
 	},
+	{
+		title: 'Contacto',
+		label: 'contacto',
+		url: '#contacto',
+	},
 ];
 
 /*
@@ -46,7 +51,7 @@ const navigationPanelClass = `
 const navigationTextClass = `
 	text-sm
 	font-medium
-	text-gray-200
+	text-foreground
 `;
 
 /*
@@ -148,6 +153,7 @@ const menuButtonClass = `
 	<!-- Menú móvil -->
 	<div
 		id="mobile-menu"
+		aria-hidden="true"
 		class={`flex w-full max-w-xs flex-col mt-2 gap-2 transition-all duration-300 ease-out opacity-0 -translate-y-2 pointer-events-none ${navigationPanelClass} ${navigationTextClass} sm:hidden`}>
 		<NavLinks items={navItems} linkClassName={mobileLinkClass} />
 	</div>
@@ -192,6 +198,7 @@ const menuButtonClass = `
 
 		menu?.classList.add('opacity-100', 'translate-y-0');
 
+		menu?.setAttribute('aria-hidden', 'false');
 		button?.setAttribute('aria-expanded', 'true');
 
 		menuIcon?.classList.add('opacity-0', 'scale-75');
@@ -210,6 +217,7 @@ const menuButtonClass = `
 
 		menu?.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
 
+		menu?.setAttribute('aria-hidden', 'true');
 		button?.setAttribute('aria-expanded', 'false');
 
 		menuIcon?.classList.remove('opacity-0', 'scale-75');

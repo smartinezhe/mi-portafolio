@@ -2,6 +2,9 @@
 // Componentes.
 import TechIcon from './TechIcon.astro';
 
+// Tipos.
+import type {Tech} from '../../types';
+
 // Iconos.
 import HTML5 from '../../assets/icons/Html5.astro';
 import CSS3 from '../../assets/icons/Css3.astro';
@@ -18,15 +21,6 @@ import Filament from '../../assets/icons/Filament.astro';
  * aplicaciones web. Resume el perfil, el enfoque de trabajo y el
  * stack técnico como una sola narrativa dentro de "Acerca de Mí".
  */
-
-/*
- * Representa una tecnología utilizada en el portafolio.
- */
-interface Tech {
-	name: string;
-	color: string;
-	icon: typeof Laravel;
-}
 
 /*
  * Tecnologías que forman parte de mi stack de desarrollo.
@@ -54,9 +48,8 @@ const marqueeTechs = [...techs, ...techs];
  */
 const descriptionClass = `
 	max-w-5xl
-	text-gray-200
+	text-foreground
 	leading-8
-	opacity-80
 `;
 
 /*

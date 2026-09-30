@@ -31,7 +31,7 @@ const {items, linkClassName = ''}: Props = Astro.props;
 
 {
 	items.map((link) => (
-		<a href={link.url} aria-label={link.label} class={linkClassName}>
+		<a href={link.url} class={linkClassName}>
 			{link.title}
 		</a>
 	))

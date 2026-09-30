@@ -1,0 +1,56 @@
+---
+// Iconos.
+import LinkedInIcon from '../../assets/icons/LinkedIn.astro';
+
+// Componentes.
+import Button from '../../assets/buttons/Button.astro';
+
+/*
+ * Componente encargado de presentar la sección de contacto.
+ * Invita al usuario a conectar a través de LinkedIn como canal
+ * profesional principal para oportunidades laborales y de negocio.
+ */
+
+/*
+ * URL del perfil de LinkedIn utilizado como medio de contacto.
+ */
+const linkedInUrl = 'https://www.linkedin.com/in/smartinezhe/';
+
+/*
+ * Estilos del párrafo de invitación al contacto.
+ */
+const descriptionClass = `
+	max-w-5xl
+	text-foreground
+	leading-8
+`;
+
+/*
+ * Estilos específicos del botón de LinkedIn.
+ */
+const linkedInButtonClass = `
+	min-w-35
+	self-start
+	bg-blue-500
+	border border-blue-600
+	text-black
+	hover:bg-blue-600
+	focus-visible:ring-blue-500/50
+`;
+---
+
+<article class="flex flex-col gap-8">
+	<p class={descriptionClass}>
+		¿Buscas un desarrollador para tu equipo o tienes un proyecto en mente?
+		Conectemos por LinkedIn, con gusto conversamos sobre cómo puedo ayudarte.
+	</p>
+
+	<Button
+		href={linkedInUrl}
+		target="_blank"
+		rel="noopener noreferrer"
+		class={linkedInButtonClass}>
+		<LinkedInIcon class="size-5" />
+		Conectemos en LinkedIn
+	</Button>
+</article>

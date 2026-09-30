@@ -6,7 +6,7 @@ import WhatsAppIcon from '../../assets/icons/WhatsApp.astro';
 import HeroIllustration from '../../assets/illustration/HeroIllustration.astro';
 
 // Componentes.
-import ContactButton from '../../assets/buttons/ContactButton.astro';
+import Button from '../../assets/buttons/Button.astro';
 
 /*
  * Componente principal de presentación (Hero).
@@ -27,12 +27,8 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 /*
  * Estilos específicos del botón contacto.
  */
-const contactButtonClass = `
+const whatsappButtonClass = `
     min-w-35
-	justify-center
-	font-semibold
-	shadow-sm
-	shadow-black/30
 	bg-emerald-400
 	border border-emerald-500
 	text-black
@@ -79,8 +75,7 @@ const heroTitleClass = `
 const heroDescriptionClass = `
 	max-w-xl
 	text-xl
-	text-gray-200
-	opacity-80
+	text-foreground
 	lg:text-2xl
 `;
 
@@ -117,19 +112,19 @@ const illustrationClass = `
 	<div class={heroContentClass}>
 		<h1 class={heroTitleClass}>Salem Martínez</h1>
 
-		<h2 class={heroDescriptionClass}>
+		<p class={heroDescriptionClass}>
 			Convierto ideas en aplicaciones web que optimizan procesos empresariales.
-		</h2>
+		</p>
 
 		<div class={heroActionsClass}>
-			<ContactButton
+			<Button
 				href={whatsappUrl}
 				target="_blank"
 				rel="noopener noreferrer"
-				class={contactButtonClass}>
+				class={whatsappButtonClass}>
 				<WhatsAppIcon class="size-5" />
 				Hablemos de tu proyecto
-			</ContactButton>
+			</Button>
 		</div>
 	</div>
 

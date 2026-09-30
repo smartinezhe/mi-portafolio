@@ -5,12 +5,14 @@ import Layout from '../layouts/Layout.astro';
 // Componentes.
 import Hero from '../components/hero/Hero.astro';
 import ContentSection from '../components/layout/ContentSection.astro';
-import Projects from '../components/projects/Projects.astro';
 import AboutMe from '../components/about/AboutMe.astro';
+import Projects from '../components/projects/Projects.astro';
+import Contact from '../components/contact/Contact.astro';
 
 // Iconos.
-import BriefcaseIcon from '../assets/icons/Briefcase.astro';
 import ProfileIcon from '../assets/icons/Profile.astro';
+import BriefcaseIcon from '../assets/icons/Briefcase.astro';
+import MailIcon from '../assets/icons/Mail.astro';
 
 /*
  * Página principal del portafolio.
@@ -50,7 +52,7 @@ const sectionsContainerClass = `
 <Layout
 	title="Salem Martínez | Desarrollador Web PHP/Laravel"
 	description="Ingeniero de Sistemas y Desarrollador Web. Creo soluciones web orientadas a optimizar procesos empresariales.">
-	<main class={mainClass}>
+	<main id="contenido-principal" class={mainClass}>
 		<ContentSection id="inicio" class={heroSectionClass}>
 			<Hero />
 		</ContentSection>
@@ -62,6 +64,10 @@ const sectionsContainerClass = `
 
 			<ContentSection id="proyectos" title="Proyectos" icon={BriefcaseIcon}>
 				<Projects />
+			</ContentSection>
+
+			<ContentSection id="contacto" title="Contacto" icon={MailIcon}>
+				<Contact />
 			</ContentSection>
 		</div>
 	</main>

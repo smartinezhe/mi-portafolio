@@ -1,0 +1,66 @@
+---
+/*
+ * Componente reutilizable para renderizar enlaces con apariencia de botón.
+ * Centraliza la estructura y los estilos base compartidos por todos los
+ * botones de acción del portafolio (contacto, proyectos, etc.).
+ * El color se define mediante la prop `variant` para casos predefinidos,
+ * o mediante `class` para personalizaciones puntuales (como los botones
+ * de contacto, que usan colores de marca específicos por canal).
+ */
+
+// Tipos.
+import type {HTMLAttributes} from 'astro/types';
+
+interface Props extends HTMLAttributes<'a'> {
+	variant?: 'slate';
+	class?: string;
+}
+
+const {variant, class: className = '', ...props}: Props = Astro.props;
+
+/*
+ * Estilos base compartidos por todos los botones, independientemente
+ * de su color. `inline-flex` asegura que el botón siempre se ajuste
+ * a su contenido, sin importar si el contenedor padre es de bloque
+ * o flex.
+ */
+const baseButtonClass = `
+	inline-flex
+	items-center
+	justify-center
+	gap-x-2
+	rounded-xl
+	px-3
+	py-2
+	font-semibold
+	shadow-sm
+	shadow-black/30
+	transition-colors
+	duration-200
+	ease-out
+	focus:outline-none
+	focus-visible:ring-2
+	focus-visible:ring-offset-2
+	focus-visible:ring-offset-background
+`;
+
+/*
+ * Variantes de color predefinidas, reutilizables sin necesidad
+ * de repetir la paleta en cada componente que use un botón.
+ */
+const variants: Record<string, string> = {
+	slate: `
+		bg-slate-300
+		border border-slate-400
+		text-black
+		hover:bg-slate-400
+		focus-visible:ring-slate-500/50
+	`,
+};
+
+const variantClass = variant ? variants[variant] : '';
+---
+
+<a class={`${baseButtonClass} ${variantClass} ${className}`} {...props}>
+	<slot />
+</a>
