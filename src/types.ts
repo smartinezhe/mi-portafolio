@@ -1,5 +1,3 @@
-import type Laravel from './assets/icons/Laravel.astro';
-
 /*
  * Representa una tecnología o herramienta del stack de desarrollo.
  * Se usa tanto en la sección "Acerca de Mí" (carrusel de tecnologías)
@@ -8,5 +6,4 @@ import type Laravel from './assets/icons/Laravel.astro';
 export interface Tech {
 	name: string;
 	color: string;
-	icon: typeof Laravel;
 }

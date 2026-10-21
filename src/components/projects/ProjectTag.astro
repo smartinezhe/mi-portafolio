@@ -1,7 +1,4 @@
 ---
-// Iconos.
-import Laravel from '../../assets/icons/Laravel.astro';
-
 /*
  * Componente encargado de renderizar una etiqueta que representa
  * una tecnología utilizada en un proyecto.
@@ -13,41 +10,33 @@ import Laravel from '../../assets/icons/Laravel.astro';
 interface Props {
 	name: string;
 	color: string;
-	icon: typeof Laravel;
 }
 
 /*
  * Obtiene las propiedades necesarias para renderizar la etiqueta.
  */
-const {name, color, icon: Icon}: Props = Astro.props;
+const {name, color}: Props = Astro.props;
 
 /*
  * Estilos principales de la etiqueta.
+ * El color del borde se define con el color de la tecnología
+ * mediante el atributo `style`.
  */
 const tagClass = `
 	flex
 	items-center
-	gap-2
 	rounded-lg
 	border
-	border-white/20
 	bg-gray-950
 	px-2
 	py-1
 	text-xs
-`;
-
-/*
- * Estilos del texto de la etiqueta.
- */
-const tagTextClass = `
 	text-foreground-muted
 `;
 ---
 
 <li>
-	<span class={tagClass}>
-		<Icon class="size-4" style={`color: ${color}`} />
-		<span class={tagTextClass}>{name}</span>
+	<span class={tagClass} style={`border-color: ${color};`}>
+		{name}
 	</span>
 </li>

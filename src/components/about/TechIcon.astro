@@ -1,18 +1,14 @@
 ---
-// Iconos.
-import Laravel from '../../assets/icons/Laravel.astro';
-
 /*
  * Componente encargado de representar una tecnología.
- * Muestra un icono acompañado del nombre de la tecnología
- * dentro de una cápsula con estilos consistentes con el portafolio.
+ * Muestra el nombre dentro de una cápsula cuyo borde toma el
+ * color de la tecnología, con estilos consistentes con el portafolio.
  */
 
 /*
  * Propiedades necesarias para renderizar una tecnología.
  */
 interface Props {
-	icon: typeof Laravel;
 	name: string;
 	color: string;
 	ariaHidden?: boolean;
@@ -20,38 +16,31 @@ interface Props {
 
 /*
  * Obtiene las propiedades utilizadas para renderizar
- * el icono, el nombre y el color de la tecnología.
+ * el nombre y el color de la tecnología.
  */
-const {icon: Icon, name, color, ariaHidden = false}: Props = Astro.props;
+const {name, color, ariaHidden = false}: Props = Astro.props;
 
 /*
  * Estilos del contenedor principal de la tecnología.
+ * El color del borde se define con el color de la tecnología
+ * mediante el atributo `style`.
  */
 const techIconClass = `
 	inline-flex
 	items-center
-	gap-3
 	rounded-xl
-	border
-	border-white/20
+	border-2
 	bg-gray-950
 	px-4
 	py-2
 	text-lg
-`;
-
-/*
- * Estilos del nombre de la tecnología.
- */
-const techNameClass = `
 	text-foreground-muted
 `;
 ---
 
-<div class={techIconClass} aria-hidden={ariaHidden || undefined}>
-	<Icon class="size-7" style={`color: ${color}`} />
-
-	<span class={techNameClass}>
-		{name}
-	</span>
+<div
+	class={techIconClass}
+	style={`border-color: ${color};`}
+	aria-hidden={ariaHidden || undefined}>
+	{name}
 </div>
