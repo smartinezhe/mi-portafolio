@@ -1,28 +1,29 @@
 ---
 /*
  * Componente reutilizable para renderizar enlaces con apariencia de botón.
- * Centraliza la estructura y los estilos base compartidos por todos los
- * botones de acción del portafolio (contacto, proyectos, etc.).
- * El color se define mediante la prop `variant` para casos predefinidos,
- * o mediante `class` para personalizaciones puntuales (como los botones
- * de contacto, que usan colores de marca específicos por canal).
+ * Aplica el estilo "3D solid push": una cara de color con un borde sólido
+ * inferior que se comprime al interactuar. El color se elige con la prop
+ * `variant`, que también define el tono del borde mediante `--btn-edge`.
  */
 
 // Tipos.
 import type {HTMLAttributes} from 'astro/types';
 
+type Variant = 'slate' | 'email' | 'linkedin';
+
 interface Props extends HTMLAttributes<'a'> {
-	variant?: 'slate';
+	variant?: Variant;
 	class?: string;
 }
 
-const {variant, class: className = '', ...props}: Props = Astro.props;
+const {variant = 'slate', class: className = '', ...props}: Props = Astro.props;
 
 /*
- * Estilos base compartidos por todos los botones, independientemente
- * de su color. `inline-flex` asegura que el botón siempre se ajuste
- * a su contenido, sin importar si el contenedor padre es de bloque
- * o flex.
+ * Estilos base compartidos por todos los botones.
+ * - Normal: borde inferior de 6px.
+ * - Hover: el botón baja 2px y el borde se reduce a 4px.
+ * - Active: el botón baja 6px y el borde desaparece (queda "presionado").
+ * La base visual del botón no se mueve en ningún estado.
  */
 const baseButtonClass = `
 	inline-flex
@@ -33,11 +34,16 @@ const baseButtonClass = `
 	px-3
 	py-2
 	font-semibold
-	shadow-sm
-	shadow-black/30
-	transition-colors
-	duration-200
+	translate-y-0
+	shadow-[0_6px_0_0_var(--btn-edge)]
+	transition-[translate,box-shadow]
+	duration-100
 	ease-out
+	hover:translate-y-0.5
+	hover:shadow-[0_4px_0_0_var(--btn-edge)]
+	active:translate-y-1.5
+	active:shadow-[0_0_0_0_var(--btn-edge)]
+	motion-reduce:transition-none
 	focus:outline-none
 	focus-visible:ring-2
 	focus-visible:ring-offset-2
@@ -45,22 +51,30 @@ const baseButtonClass = `
 `;
 
 /*
- * Variantes de color predefinidas, reutilizables sin necesidad
- * de repetir la paleta en cada componente que use un botón.
+ * Variantes de color: cara, texto, borde sólido y anillo de foco.
  */
-const variants: Record<string, string> = {
+const variants: Record<Variant, string> = {
+	email: `
+		bg-amber-400
+	    text-black
+	    [--btn-edge:var(--color-amber-600)]
+	    focus-visible:ring-amber-400/50
+	`,
+	linkedin: `
+		bg-sky-700
+		text-white
+		[--btn-edge:var(--color-sky-900)]
+		focus-visible:ring-sky-700/50
+	`,
 	slate: `
 		bg-slate-300
-		border border-slate-400
 		text-black
-		hover:bg-slate-400
+		[--btn-edge:var(--color-slate-500)]
 		focus-visible:ring-slate-500/50
 	`,
 };
-
-const variantClass = variant ? variants[variant] : '';
 ---
 
-<a class={`${baseButtonClass} ${variantClass} ${className}`} {...props}>
+<a class={`${baseButtonClass} ${variants[variant]} ${className}`} {...props}>
 	<slot />
 </a>

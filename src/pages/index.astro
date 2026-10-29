@@ -9,11 +9,6 @@ import AboutMe from '../components/about/AboutMe.astro';
 import Projects from '../components/projects/Projects.astro';
 import Contact from '../components/contact/Contact.astro';
 
-// Iconos.
-import ProfileIcon from '../assets/icons/Profile.astro';
-import BriefcaseIcon from '../assets/icons/Briefcase.astro';
-import MailIcon from '../assets/icons/Mail.astro';
-
 /*
  * Página principal del portafolio.
  * Organiza las diferentes secciones del sitio dentro del layout
@@ -51,22 +46,22 @@ const sectionsContainerClass = `
 
 <Layout
 	title="Salem Martínez | Desarrollador Web PHP/Laravel"
-	description="Ingeniero de Sistemas y Desarrollador Web. Creo soluciones web orientadas a optimizar procesos empresariales.">
+	description="Ingeniero de Sistemas y Desarrollador Web. Desarrollo aplicaciones web a la medida.">
 	<main id="contenido-principal" class={mainClass}>
 		<ContentSection id="inicio" class={heroSectionClass}>
 			<Hero />
 		</ContentSection>
 
 		<div class={sectionsContainerClass}>
-			<ContentSection id="acerca-de-mi" title="Acerca de Mí" icon={ProfileIcon}>
+			<ContentSection id="acerca-de-mi" title="Acerca de Mí">
 				<AboutMe />
 			</ContentSection>
 
-			<ContentSection id="proyectos" title="Proyectos" icon={BriefcaseIcon}>
+			<ContentSection id="proyectos" title="Proyectos">
 				<Projects />
 			</ContentSection>
 
-			<ContentSection id="contacto" title="Contacto" icon={MailIcon}>
+			<ContentSection id="contacto" title="Contacto">
 				<Contact />
 			</ContentSection>
 		</div>

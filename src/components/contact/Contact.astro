@@ -1,20 +1,21 @@
 ---
 // Iconos.
 import LinkedInIcon from '../../assets/icons/LinkedIn.astro';
+import MailIcon from '../../assets/icons/Mail.astro';
 
 // Componentes.
 import Button from '../../assets/buttons/Button.astro';
 
-/*
- * Componente encargado de presentar la sección de contacto.
- * Invita al usuario a conectar a través de LinkedIn como canal
- * profesional principal para oportunidades laborales y de negocio.
- */
+// Constantes.
+import {CONTACT} from '../../constants';
 
 /*
- * URL del perfil de LinkedIn utilizado como medio de contacto.
+ * Componente encargado de presentar la sección de contacto.
+ * Ofrece el correo electrónico y LinkedIn como canales de contacto
+ * para oportunidades laborales y de negocio.
  */
-const linkedInUrl = 'https://www.linkedin.com/in/smartinezhe/';
+
+const emailUrl = `mailto:${CONTACT.email}`;
 
 /*
  * Estilos del párrafo de invitación al contacto.
@@ -26,31 +27,34 @@ const descriptionClass = `
 `;
 
 /*
- * Estilos específicos del botón de LinkedIn.
+ * Contenedor de los botones de contacto.
  */
-const linkedInButtonClass = `
-	min-w-35
-	self-start
-	bg-sky-700
-	border border-sky-800
-	text-white
-	hover:bg-sky-800
-	focus-visible:ring-sky-700/50
+const actionsClass = `
+	flex
+	flex-wrap
+	gap-4
 `;
 ---
 
 <article class="flex flex-col gap-8">
 	<p class={descriptionClass}>
-		¿Buscas un desarrollador para tu equipo o tienes un proyecto en mente?
-		Conectemos por LinkedIn, con gusto conversamos sobre cómo puedo ayudarte.
+		Escríbame por correo o conectemos en LinkedIn para conversar sobre cómo
+		puedo ayudarle.
 	</p>
 
-	<Button
-		href={linkedInUrl}
-		target="_blank"
-		rel="noopener noreferrer"
-		class={linkedInButtonClass}>
-		<LinkedInIcon class="size-5" />
-		Conectemos en LinkedIn
-	</Button>
+	<div class={actionsClass}>
+		<Button href={emailUrl} variant="email">
+			<MailIcon class="size-5" />
+			Correo electrónico
+		</Button>
+
+		<Button
+			href={CONTACT.linkedIn}
+			target="_blank"
+			rel="noopener noreferrer"
+			variant="linkedin">
+			<LinkedInIcon class="size-5" />
+			LinkedIn
+		</Button>
+	</div>
 </article>

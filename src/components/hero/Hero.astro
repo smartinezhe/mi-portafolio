@@ -1,6 +1,6 @@
 ---
 // Iconos.
-import WhatsAppIcon from '../../assets/icons/WhatsApp.astro';
+import MailIcon from '../../assets/icons/Mail.astro';
 
 // Ilustraciones.
 import HeroIllustration from '../../assets/illustration/HeroIllustration.astro';
@@ -8,33 +8,19 @@ import HeroIllustration from '../../assets/illustration/HeroIllustration.astro';
 // Componentes.
 import Button from '../../assets/buttons/Button.astro';
 
+// Constantes.
+import {CONTACT} from '../../constants';
+
+/*
+ * Enlace para redactar un correo al contacto principal.
+ */
+const emailUrl = `mailto:${CONTACT.email}`;
+
 /*
  * Componente principal de presentación (Hero).
  * Muestra el nombre, la descripción profesional, el enlace
  * de contacto y la ilustración principal del portafolio.
  */
-
-/*
- * Número de WhatsApp utilizado para generar el enlace de contacto.
- */
-const whatsappNumber = '573125815262';
-
-/*
- * URL completa para abrir una conversación en WhatsApp.
- */
-const whatsappUrl = `https://wa.me/${whatsappNumber}`;
-
-/*
- * Estilos específicos del botón contacto.
- */
-const whatsappButtonClass = `
-    min-w-35
-	bg-teal-500
-	border border-teal-600
-	text-black
-	hover:bg-teal-600
-	focus-visible:ring-teal-500/50
-`;
 
 /*
  * Estilos del contenedor principal del Hero.
@@ -64,7 +50,7 @@ const heroContentClass = `
 const heroTitleClass = `
 	text-3xl
 	font-bold
-	text-white
+	text-cyan-500
 	md:text-4xl
 	lg:text-5xl
 `;
@@ -113,17 +99,13 @@ const illustrationClass = `
 		<h1 class={heroTitleClass}>Salem Martínez</h1>
 
 		<p class={heroDescriptionClass}>
-			Convierto ideas en aplicaciones web que optimizan procesos empresariales.
+			Desarrollo aplicaciones web alineadas con las reglas de su negocio.
 		</p>
 
 		<div class={heroActionsClass}>
-			<Button
-				href={whatsappUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				class={whatsappButtonClass}>
-				<WhatsAppIcon class="size-5" />
-				Hablemos de tu proyecto
+			<Button href={emailUrl} variant="email">
+				<MailIcon class="size-5" />
+				Hablemos de su proyecto
 			</Button>
 		</div>
 	</div>
