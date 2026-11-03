@@ -2,93 +2,55 @@
 // Componentes.
 import TechIcon from './TechIcon.astro';
 
-// Tipos.
-import type {Tech} from '../../types';
+// Datos.
+import {STACK_GROUPS} from '../../techs';
 
 /*
- * Componente encargado de presentar una breve descripción profesional
- * y el carrusel de tecnologías que utilizo en el desarrollo de
- * aplicaciones web. Resume el perfil, el enfoque de trabajo y el
- * stack técnico como una sola narrativa dentro de "Acerca de Mí".
+ * Componente que muestra la descripción profesional y stack de tecnologías agrupado por categoría.
  */
 
-/*
- * Tecnologías que forman parte de mi stack de desarrollo.
- */
-const techs: Tech[] = [
-	{name: 'HTML5', color: '#FB490B'},
-	{name: 'CSS3', color: '#C27AFF'},
-	{name: 'JavaScript', color: '#F0DB4F'},
-	{name: 'Tailwind CSS', color: '#38BDF8'},
-	{name: 'PHP', color: '#1E88E5'},
-	{name: 'MySQL', color: '#00BBA7'},
-	{name: 'Laravel', color: '#FF2D20'},
-	{name: 'Filament', color: '#EFAF5D'},
-];
-
-/*
- * Copia duplicada del arreglo original. Es la base del efecto de
- * carrusel infinito: la pista se traslada -50% y, al ser la segunda
- * mitad idéntica a la primera, el "salto" es imperceptible.
- */
-const marqueeTechs = [...techs, ...techs];
-
-/*
- * Estilos del párrafo descriptivo.
- */
 const descriptionClass = `
-	max-w-5xl
 	text-foreground
 	leading-8
 `;
 
-/*
- * Contenedor exterior del carrusel: oculta el desbordamiento y
- * aplica un degradado en los bordes para que las cápsulas no
- * aparezcan/desaparezcan de forma abrupta.
- */
-const techMarqueeClass = `
-	tech-marquee
-	relative
-	w-full
-	overflow-hidden
-	[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
-	[-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]
+const groupTitleClass = `
+	text-sm
+	font-medium
+	uppercase
+	tracking-wider
+	text-foreground-muted
 `;
 
-/*
- * Pista interna que contiene ambas copias de tecnologías y
- * lleva la animación de desplazamiento continuo.
- */
-const techTrackClass = `
-	tech-track
+const techListClass = `
 	flex
-	w-max
-	flex-nowrap
-	items-center
-	gap-4
+	flex-wrap
+	gap-3
 `;
 ---
 
 <article class="flex flex-col gap-8">
 	<p class={descriptionClass}>
-		Mi nombre es Salem José Martínez Herrera, Ingeniero de Sistemas y
-		Desarrollador Web. Combino tecnologías modernas de frontend y backend para
-		crear aplicaciones a la medida que ayudan a las empresas a optimizar y
-		agilizar sus procesos internos.
+		Soy Salem José Martínez Herrera, Ingeniero de Sistemas y Desarrollador Web
+		enfocado en la creación de aplicaciones web. Convierto los procesos manuales
+		de una empresa en sistemas centralizados, participando en todo el ciclo de
+		desarrollo: desde el análisis de requisitos y el diseño de interfaces hasta
+		la implementación de la lógica de negocio, la gestión de bases de datos, la
+		puesta en producción y mantenimiento del aplicativo.
 	</p>
 
-	<div class={techMarqueeClass}>
-		<div class={techTrackClass}>
-			{
-				marqueeTechs.map((tech, index) => (
-					<TechIcon
-						name={tech.name}
-						color={tech.color}
-						ariaHidden={index >= techs.length}
-					/>
-				))
-			}
-		</div>
+	<div class="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-10">
+		{
+			STACK_GROUPS.map((group) => (
+				<div class="flex flex-col gap-3">
+					<h3 class={groupTitleClass}>{group.title}</h3>
+					<ul class={techListClass} role="list">
+						{group.techs.map((tech) => (
+							<TechIcon name={tech.name} color={tech.color} />
+						))}
+					</ul>
+				</div>
+			))
+		}
 	</div>
 </article>

@@ -56,6 +56,19 @@ const heroTitleClass = `
 `;
 
 /*
+ * Estilos del rol.
+ */
+const heroRoleClass = `
+	mt-2
+	block
+	text-xl
+	font-semibold
+	text-foreground
+	md:text-2xl
+	lg:text-3xl
+`;
+
+/*
  * Estilos de la descripción principal.
  */
 const heroDescriptionClass = `
@@ -96,10 +109,13 @@ const illustrationClass = `
 
 <div class={heroClass}>
 	<div class={heroContentClass}>
-		<h1 class={heroTitleClass}>Salem Martínez</h1>
+		<h1 class={heroTitleClass}>
+			Salem Martínez<span class="sr-only">, </span>
+			<span class={heroRoleClass}>Desarrollador Web</span>
+		</h1>
 
 		<p class={heroDescriptionClass}>
-			Desarrollo aplicaciones web alineadas con las reglas de su negocio.
+			Construyo aplicaciones web que centralizan los procesos de su negocio.
 		</p>
 
 		<div class={heroActionsClass}>

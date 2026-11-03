@@ -1,46 +1,28 @@
 ---
 /*
- * Componente encargado de representar una tecnología.
- * Muestra el nombre dentro de una cápsula cuyo borde toma el
- * color de la tecnología, con estilos consistentes con el portafolio.
- */
-
-/*
- * Propiedades necesarias para renderizar una tecnología.
+ * Componente que muestra una tecnología como elemento de lista, dentro de una
+ * cápsula cuyo borde toma el color de la tecnología.
  */
 interface Props {
 	name: string;
 	color: string;
-	ariaHidden?: boolean;
 }
 
-/*
- * Obtiene las propiedades utilizadas para renderizar
- * el nombre y el color de la tecnología.
- */
-const {name, color, ariaHidden = false}: Props = Astro.props;
+const {name, color}: Props = Astro.props;
 
-/*
- * Estilos del contenedor principal de la tecnología.
- * El color del borde se define con el color de la tecnología
- * mediante el atributo `style`.
- */
 const techIconClass = `
 	inline-flex
 	items-center
 	rounded-xl
 	border-2
 	bg-gray-950
-	px-4
-	py-2
-	text-lg
+	px-3
+	py-1.5
+	text-base
 	text-foreground-muted
 `;
 ---
 
-<div
-	class={techIconClass}
-	style={`border-color: ${color};`}
-	aria-hidden={ariaHidden || undefined}>
+<li class={techIconClass} style={`border-color: ${color};`}>
 	{name}
-</div>
+</li>

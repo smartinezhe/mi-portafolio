@@ -26,6 +26,7 @@ interface Props {
 	title: string;
 	description: string;
 	image: ImageMetadata;
+	imageAlt: string;
 	github?: string;
 	tags: Tech[];
 }
@@ -33,7 +34,7 @@ interface Props {
 /*
  * Obtiene las propiedades necesarias para renderizar la tarjeta.
  */
-const {title, description, image, github, tags}: Props = Astro.props;
+const {title, description, image, imageAlt, github, tags}: Props = Astro.props;
 
 /*
  * Estilos principales de la tarjeta del proyecto.
@@ -123,41 +124,37 @@ const projectDescriptionClass = `
 	<div class={imageContainerClass}>
 		<Image
 			src={image}
-			alt={title}
+			alt={imageAlt}
+			widths={[400, 800, 880]}
+			sizes="(min-width: 768px) 440px, calc(100vw - 5rem)"
 			class={imageClass}
-			loading="lazy"
-			decoding="async"
 		/>
 	</div>
 
 	<div class={projectContentClass}>
 		<div class={projectInfoClass}>
-			<h3 class={projectTitleClass}>
-				{title}
-			</h3>
+			<h3 class={projectTitleClass}>{title}</h3>
 
-			<ul class={tagListClass}>
+			<ul class={tagListClass} role="list" aria-label="Tecnologías utilizadas">
 				{tags.map((tag) => <ProjectTag name={tag.name} color={tag.color} />)}
 			</ul>
 
-			<p class={projectDescriptionClass}>
-				{description}
-			</p>
+			<p class={projectDescriptionClass}>{description}</p>
 		</div>
 
-		<footer>
-			{
-				github && (
+		{
+			github && (
+				<footer>
 					<Button
 						href={github}
 						target="_blank"
 						rel="noopener noreferrer"
 						variant="slate">
 						<GitHubIcon class="size-5" />
-						Ver Proyecto
+						Ver código en GitHub
 					</Button>
-				)
-			}
-		</footer>
+				</footer>
+			)
+		}
 	</div>
 </article>

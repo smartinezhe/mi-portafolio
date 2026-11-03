@@ -56,25 +56,31 @@ const baseButtonClass = `
 const variants: Record<Variant, string> = {
 	email: `
 		bg-amber-400
-	    text-black
-	    [--btn-edge:var(--color-amber-600)]
-	    focus-visible:ring-amber-400/50
+		text-black
+		[--btn-edge:var(--color-amber-600)]
+		focus-visible:ring-amber-300
 	`,
 	linkedin: `
 		bg-sky-700
 		text-white
 		[--btn-edge:var(--color-sky-900)]
-		focus-visible:ring-sky-700/50
+		focus-visible:ring-sky-400
 	`,
 	slate: `
 		bg-slate-300
 		text-black
 		[--btn-edge:var(--color-slate-500)]
-		focus-visible:ring-slate-500/50
+		focus-visible:ring-slate-300
 	`,
 };
+
+/*
+ * Los enlaces que abren pestaña nueva lo anuncian a lectores de pantalla.
+ */
+const opensInNewTab = props.target === '_blank';
 ---
 
 <a class={`${baseButtonClass} ${variants[variant]} ${className}`} {...props}>
 	<slot />
+	{opensInNewTab && <span class="sr-only">(se abre en una pestaña nueva)</span>}
 </a>

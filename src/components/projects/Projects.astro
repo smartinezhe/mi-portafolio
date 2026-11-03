@@ -2,57 +2,27 @@
 // Componentes.
 import ProjectCard from './ProjectCard.astro';
 
-// Tipos.
+// Datos y tipos.
+import {TECHS} from '../../techs';
 import type {Tech} from '../../types';
+import type {ImageMetadata} from 'astro';
 
 // Imágenes.
 import Proyecto1 from '../../assets/img-projects/proyecto1.webp';
 
 /*
- * Componente encargado de renderizar el listado de proyectos del portafolio.
- * Define las tecnologías disponibles y la información de cada proyecto para
- * delegar su representación al componente ProjectCard.
- */
-
-/*
- * Representa la información necesaria para renderizar un proyecto.
+ * Lista de proyectos del portafolio. Las tecnologías se toman del
+ * catálogo central (`techs.ts`).
  */
 interface Project {
 	title: string;
 	description: string;
 	github?: string;
-	image: typeof Proyecto1;
+	image: ImageMetadata;
+	imageAlt: string;
 	tags: Tech[];
 }
 
-/*
- * Tecnologías utilizadas en los proyectos del portafolio.
- */
-const tags: Record<string, Tech> = {
-	LARAVEL: {
-		name: 'Laravel',
-		color: '#FF2D20',
-	},
-
-	TAILWIND: {
-		name: 'Tailwind CSS',
-		color: '#38BDF8',
-	},
-
-	MYSQL: {
-		name: 'MySQL',
-		color: '#00BBA7',
-	},
-
-	FILAMENT: {
-		name: 'Filament',
-		color: '#EFAF5D',
-	},
-};
-
-/*
- * Proyectos que se mostrarán en el portafolio.
- */
 const projects: Project[] = [
 	{
 		title: 'Sistema de Gestión de Incapacidades Laborales',
@@ -60,7 +30,8 @@ const projects: Project[] = [
 			'Plataforma web que simplifica la gestión de incapacidades laborales, automatizando los procesos administrativos del área de recursos humanos para que las empresas ahorren tiempo y reduzcan errores.',
 		github: 'https://github.com/smartinezhe/sistema-incapacidades',
 		image: Proyecto1,
-		tags: [tags.LARAVEL, tags.FILAMENT, tags.TAILWIND, tags.MYSQL],
+		imageAlt: 'Sistema de Gestión de Incapacidades Laborales',
+		tags: [TECHS.LARAVEL, TECHS.FILAMENT, TECHS.TAILWIND, TECHS.MYSQL],
 	},
 ];
 ---

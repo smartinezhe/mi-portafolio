@@ -21,7 +21,7 @@ interface Props {
  */
 const {
 	author = 'Salem Martínez',
-	website = 'https://smartinezhe.netlify.app',
+	website = Astro.site?.href ?? '/',
 	startYear = 2026,
 }: Props = Astro.props;
 
@@ -55,14 +55,16 @@ const footerClass = `
  */
 const footerContentClass = `
 	flex
-	w-fit
-	mx-auto
+	w-full
+	justify-center
 	rounded-lg
 	border
 	border-white/20
 	bg-white/3
-	py-4
 	px-6
+	py-4
+	lg:mx-auto
+	lg:w-fit
 `;
 
 /*
@@ -86,7 +88,7 @@ const footerLinkClass = `
 	<div class={footerContentClass}>
 		<span class={footerTextClass}>
 			© {displayYear}{' '}
-			<a href={website} class={footerLinkClass} rel="noopener noreferrer">
+			<a href={website} class={footerLinkClass}>
 				{author}
 			</a> ❤️​
 		</span>
